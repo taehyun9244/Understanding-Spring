@@ -1,7 +1,9 @@
 package hello.spring.demo.service;
 
 import hello.spring.demo.domain.Member;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +19,8 @@ class MemberServiceTest {
         //when
         Long saveId = memberService.join(member);
         //then
+        Member findMember = memberService.findOne(saveId).get();
+        Assertions.assertThat(member.getName());
     }
 
     @Test
