@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MemberServiceTest {
@@ -21,7 +20,7 @@ class MemberServiceTest {
         Long saveId = memberService.join(member);
         //then
         Member findMember = memberService.findOne(saveId).get();
-        assertThat(member.getName()).isEqualTo(findMember.getName());
+        Assertions.assertThat(member.getName()).isEqualTo(findMember.getName());
     }
 
     @Test
@@ -35,12 +34,14 @@ class MemberServiceTest {
 
         //when
         memberService.join(member1);
-        try {
-            memberService.join(member2);
-            fail("예외가 발생해야 합니다");
-        } catch (IllegalStateException e) {
-            assertThat(e.getMessage()).isEqualTo("이미 존해하는 회원입니다");
-        }
+        assertThrows(IllegalStateException.class,()->memberService.join(member2));
+
+//        try {
+//            memberService.join(member2);
+//            fail("예외가 발생해야 합니다");
+//        } catch (IllegalStateException e) {
+//            assertThat(e.getMessage()).isEqualTo("이미 존해하는 회원입니다");
+//        }
 
         //then
     }
