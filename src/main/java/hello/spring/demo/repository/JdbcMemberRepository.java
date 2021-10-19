@@ -98,7 +98,7 @@ public class JdbcMemberRepository implements MemberRepository{
         }
     }
 
-//    @Override
+//    @Override 왜 에러가 떳을까
     public Optional<Member> findByName(String name) {
 
         String sql = "select * from member where name = ?";
