@@ -97,8 +97,10 @@ public class JdbcMemberRepository implements MemberRepository{
             close(conn, pstmt, rs);
         }
     }
-   @Override
+
+//    @Override
     public Optional<Member> findByName(String name) {
+
         String sql = "select * from member where name = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -108,7 +110,7 @@ public class JdbcMemberRepository implements MemberRepository{
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, name);
             rs = pstmt.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
                 member.setName(rs.getString("name"));
