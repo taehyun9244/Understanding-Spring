@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Transactional
 public class MemberService {
-
+    
     private final MemberRepository memberRepository;
 
     @Autowired
@@ -24,10 +24,11 @@ public class MemberService {
      *회원가입 (sing up)
      */
     public Long join(Member member){
-//        같은 이름이 있는 중복회원X 同じ名前のSING UPできない
-        validateDuplicateMember(member); //중복 회원 검증　重複会員検証
-        memberRepository.save(member);
-        return member.getId();
+       //            같은 이름이 있는 중복회원X 同じ名前のSING UPできない
+            validateDuplicateMember(member); //중복 회원 검증　重複会員検証
+            memberRepository.save(member);
+            return member.getId();
+
     }
 
     private void validateDuplicateMember(Member member) {
